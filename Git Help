@@ -51,5 +51,10 @@ ps： 第9步到第14步是把作品上传到GitHub上，具体的版本控制�
 18：推送到github，请输入：
 		   $ git push
 19：删除分支，请输入：
-		   1)git branch  --查看当前有哪些分支
-		   2)git branch -D new_branch  --删除分支，new_branch是被删除的分支名
+		   1)$ git branch  --查看当前有哪些分支
+		   2)$ git branch -D new_branch  --删除分支，new_branch是被删除的分支名
+20：git修改提交说明commit message方法：
+		   1)代码未推送到服务器输入：
+		   $ git commit --amend  --指令会打开文本编辑器(默认是vim),按键盘字母 i 进入insert模式,修改最上面那行黄色信息,按键盘左上角"Esc",输入":wq",注意是冒号+wq,按回车键即可，其他注释行可以删除，也可以不管~！
+		   2)代码已经推送到远程服务器输入：
+		   $ git push origin master -f  --地强制上传到远程，把远程的覆盖，慎用~！ps: $ git pull --rebase origin master 拉取远程的文件把本地的覆盖，再上传
