@@ -1,0 +1,55 @@
+git 使用步骤(https://git-scm.com/book/en/v2)
+
+1；到官网(https://git-scm.com/)下载git客户端
+2：下载后安装(会生成git bash.exe)
+3：到GitHub官网(https://github.com/)注册账号，并建立存储库
+4：打开git bash.exe(命令行工具)
+5：输入：
+          $ git config --global user.name "John Doe"   --John Doe 你的用户名
+          $ git config --global user.email johndoe@example.com  --johndoe@example.com 你邮箱地址
+6：输入： git config --global core.editor vim 输入你的默认文本编辑器，通常使用默认编辑器vim
+7：建立本地仓库(比如在F盘下)输入：
+           $ cd /f     --/f表示盘符
+           $ mkdir myGitHub   --myGitHub 仓库名称(在f盘下可以找到此文件夹)
+8：初始化仓库输入：
+           $ cd /f/myGitHub  --定位到本地仓库(一定要定位)
+		   $ git init  --初始化仓库(在myGitHub文件夹中生成一个隐藏的 .git 后缀文件)
+--------------------------------------------------------------------------------------------------------------------------------------------
+9：连接GitHub,输入：
+           $ ssh-keygen -t rsa -C "johndoe@example.com"  --johndoe@example.com 邮箱地址
+10：秘钥生成后可以在 "C:\Users\Administrator\.ssh" 文件夹下找到秘钥文件 "id_rsa.pub",用记事本打开复制密钥.
+11：登录GitHub账户，点击右上角头像右边的三角符号，打开setting,在左边SSH and GPG keys；
+    点击右上角News SSH key,讲复制的密钥粘贴到Key框中,Title框中随便输入名称，点击下面的Add SSH Key。
+	成功了显示一把钥匙和相关的密钥内容。
+12：验证是否配置成功输入：
+           ssh -T git@github.com
+	1).当提示输入（yes/no）? 时，在后面输入 yes 回车即可。
+	2).如果看到欢迎语 "Hi xxx! You've successfully authenticated, but GitHub does not provide shell access" 则表示配置成功。
+	3).如果提示类似 "ssh: Could not resolve hostname \342\200\223t: Name or service not known" 的错误，解决办法是执行命令：ssh -t -p 22 git@github.com（其中 -p 表示修改服务器端口为22）
+13：如果在创建GitHub时选择了创建README文件,而本地存储库中却没有README.md.则可能远程推送数据会出错,需输入：
+           $ cd /f/myGitHub   --定位本地仓库
+		   $ git remote add origin git@github.com:similarduckweed/miller.git   --使用git协议连接远程库(这步可以不输入)
+		   $ git pull --rebase origin master   --同步README.md文件到本地仓库
+    如果成功了在本地存储库/f/myGitHub文件夹下回看到README.md文件
+14：把需要上传到GitHub的文件放入存储库myGitHub文件夹下输入：
+		   1)$ git add .  --.代表当前文件下的所有文件
+		   2)$ git commit -m "提交文件"  -- -m表示说明性文字,后面双引号里面填上内容(最好是用-m 填上说明文字,不然直接git commit,后面会显示界面让你输入,不好操作~！)
+           3)$ git push -u origin master  --推送本地库所有文件到默认分支master下
+--------------------------------------------------------------------------------------------------------------------------------------------
+ps： 第9步到第14步是把作品上传到GitHub上，具体的版本控制是Git来作用,与GitHub是两码事~！
+--------------------------------------------------------------------------------------------------------------------------------------------
+15：创建一个分支，请输入：
+           $ git branch new_branch    --new_branch是创建的分支名
+16：切换到分支上，请输入：
+		   $ git chekedout new_branch
+	也可以使用新建一个分支并且立即切换到新建的分支上，请输入：
+	       $ git checkout -b new_branch
+17：合并分支，请输入：
+		   $ git merge new_branch
+	报错！ fatal：refusing to merge unrelated histories.
+	解决方法：在命令后面加上一句“--allow-unrelated-histories”，即完整的命令为“git merge gh-pages --allow-unrelated-histories”
+18：推送到github，请输入：
+		   $ git push
+19：删除分支，请输入：
+		   1)git branch  --查看当前有哪些分支
+		   2)git branch -D new_branch  --删除分支，new_branch是被删除的分支名
