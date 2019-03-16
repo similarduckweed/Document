@@ -41,7 +41,7 @@ ps： 第9步到第14步是把作品上传到GitHub上，具体的版本控制�
 15：创建一个分支，请输入：
            $ git branch new_branch    --new_branch是创建的分支名
 16：切换到分支上，请输入：
-		   $ git chekedout new_branch
+		   $ git checkout new_branch
 	也可以使用新建一个分支并且立即切换到新建的分支上，请输入：
 	       $ git checkout -b new_branch
 17：合并分支，请输入：
